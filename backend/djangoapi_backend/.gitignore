@@ -109,6 +109,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*_venv/
+*-venv/
+django_venv/
 
 # Spyder project settings
 .spyderproject
@@ -127,3 +130,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+**/migrations/
+staticfiles/

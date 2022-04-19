@@ -1,2 +1,10 @@
-# FullStackTraining
-Full Stack Training FastAPI Django ReactJS Celery Redis Docker
+# Full Stack Training App
+
+Full Stack Training:
+
+- FastAPI
+- Django REST Framework
+- ReactJS 
+- Celery
+- Redis
+- Docker
