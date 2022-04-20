@@ -13,7 +13,7 @@ class Author(models.Model):
 class Item(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    owner = models.ForeignKey(Author, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="items")
 
     def __str__(self) -> str:
         return f"{self.owner.email}-{self.title}"

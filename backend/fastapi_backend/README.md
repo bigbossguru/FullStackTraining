@@ -1,21 +1,21 @@
 # FastAPI backend
 
-## Alembic
+## Alembic scripts
 
-### Alembic INIT
+### `alembic init alembic`
 
-`alembic init alembic`
+initialize alembic settings and config
 
-### Create or Update DB migration Script
+### `alembic revision -m "init database"`
 
-`alembic revision -m "init database"`
+create database and tables
 
-### Migration
+### `alembic upgrade head`
 
-`alembic upgrade head`
+make migration or update your database schemas
 
 ## FastAPI launch
 
-### Run server
+### `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
 
-`uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
+run development server using by uvicorn module

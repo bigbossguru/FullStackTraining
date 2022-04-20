@@ -2,18 +2,20 @@
 
 ## Prepare before start server
 
-### migrace
+### `python3 manage.py migrate`
 
-`python3 manage.py migrate`
+migrate all changes and commit into database
 
-### make migration
+### `python3 manage.py makemigrations`
 
-`python3 manage.py makemigrations`
+after creating models need to make pre commit 
 
-### collect static
+### `python3 manage.py collectstatic`
 
-`python3 manage.py collectstatic`
+collectstatic is doing collect entire project static files
 
 ## Run server
 
-`gunicorn core.wsgi:application --bind 0.0.0.0:8000`
+### `gunicorn core.wsgi:application --bind 0.0.0.0:8000 --reload`
+
+run development server using by gunicorn module
