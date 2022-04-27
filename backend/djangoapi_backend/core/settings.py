@@ -87,19 +87,19 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": env("DJANGO_DB_ENGINE"),
+        "NAME": BASE_DIR / env("DJANGO_DB_NAME"),
     }
 }
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': env('DB_ENGINE'),
-#         'NAME': env('DB_NAME'),
-#         'USER': env('DB_USER'),
-#         'PASSWORD': env('DB_PASSWD'),
-#         'HOST': env('DB_HOST'),
-#         'PORT': env('DB_PORT'),
+#         'ENGINE': env('DJANGO_DB_ENGINE'),
+#         'NAME': env('DJANGO_DB_NAME'),
+#         'USER': env('DJANGO_DB_USER'),
+#         'PASSWORD': env('DJANGO_DB_PASSWD'),
+#         'HOST': env('DJANGO_DB_HOST'),
+#         'PORT': env('DJANGO_DB_PORT'),
 #     }
 # }
 

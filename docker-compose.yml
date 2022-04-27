@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  django_backend:
+    restart: always
+    build:
+      context: ./backend/djangoapi_backend
+    command: ./entrypoint.sh
+    volumes:
+      - static_django:/home/backend/django/staticfiles
+    ports:
+      - 8000:8000
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DJANGO_DB_ENGINE=${DJANGO_DB_ENGINE}
+      - DJANGO_DB_NAME=${DJANGO_DB_NAME}
+  
+  fastapi_backend:
+    restart: always
+    build:
+      context: ./backend/fastapi_backend
+    command: ./entrypoint.sh
+    ports:
+      - 8001:8001
+    environment:
+      - SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
+    
+volumes:
+  static_django:

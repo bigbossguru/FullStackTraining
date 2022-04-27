@@ -1,0 +1,10 @@
+*_venv/
+*-venv/
+fast_venv/
+django_venv/
+__pycache__/
+node_modules/
+db.sqlite3
+*_db.sqlite3
+backend/djangoapi_backend/staticfiles
+backend/fastapi_backend/alembic/versions
