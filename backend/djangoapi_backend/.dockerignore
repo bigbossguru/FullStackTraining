@@ -1,0 +1,7 @@
+*_venv/
+*-venv/
+fast_venv/
+django_venv/
+__pycache__/
+db.sqlite3
+*_db.sqlite3
