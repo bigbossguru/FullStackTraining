@@ -7,15 +7,16 @@ services:
       context: ./backend/djangoapi_backend
     command: ./entrypoint.sh
     volumes:
-      - static_django:/home/backend/django/staticfiles
-    ports:
-      - 8000:8000
+      - static_django:/home/app/backend/django/static
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
       - DJANGO_DB_ENGINE=${DJANGO_DB_ENGINE}
       - DJANGO_DB_NAME=${DJANGO_DB_NAME}
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
   
   fastapi_backend:
     restart: always
@@ -26,6 +27,70 @@ services:
       - 8001:8001
     environment:
       - SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
+  
+  redis:
+    restart: always
+    image: redis:7.0-alpine
+    ports:
+      - 6379:6379
+
+  celery_django:
+    restart: always
+    build:
+      context: ./backend/djangoapi_backend
+    command: celery -A core worker --loglevel=INFO
+    volumes:
+      - static_django:/home/app/backend/django/static
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DJANGO_DB_ENGINE=${DJANGO_DB_ENGINE}
+      - DJANGO_DB_NAME=${DJANGO_DB_NAME}
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
+    depends_on:
+      - redis
+      - django_backend
+  
+  celerybeat_django:
+    restart: always
+    build:
+      context: ./backend/djangoapi_backend
+    command: celery -A core beat --loglevel=INFO
+    volumes:
+      - static_django:/home/app/backend/django/static
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DJANGO_DB_ENGINE=${DJANGO_DB_ENGINE}
+      - DJANGO_DB_NAME=${DJANGO_DB_NAME}
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
+    depends_on:
+      - redis
+      - django_backend
+  
+  react_frontend:
+    restart: always
+    build:
+      context: ./frontend
+    command: npm start
+    ports:
+      - 3000:3000
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_django:/home/app/backend/django/static
+    ports:
+      - 80:80
+    depends_on:
+      - django_backend
+      - fastapi_backend
     
 volumes:
   static_django:
