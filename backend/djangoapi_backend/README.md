@@ -14,6 +14,10 @@ after creating models need to make pre commit
 
 collectstatic is doing collect entire project static files
 
+### `openssl rand -hex 40`
+
+generating new SECRET_KEY and copy to .env file and replace old value
+
 ## Run server
 
 ### `gunicorn core.wsgi:application --bind 0.0.0.0:8000 --reload`
