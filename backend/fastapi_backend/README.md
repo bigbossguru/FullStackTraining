@@ -6,7 +6,7 @@
 
 initialize alembic settings and config
 
-### `alembic revision -m "init database"`
+### `alembic revision --autogenerate -m "init database"`
 
 create database and tables
 
