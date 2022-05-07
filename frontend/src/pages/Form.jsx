@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 
-const About = () => {
+const Form = () => {
   return (
     <>
       <Navbar />
-      <h1>About page</h1>
+      <h1>Form page</h1>
     </>
   );
 };
 
-export default About;
+export default Form;
