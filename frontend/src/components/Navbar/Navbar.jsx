@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <header>
-      <a href="#home" className={styles.logo}>
+      <Link to="/" className={styles.logo}>
         <h2>FullStackTrainig</h2>
-      </a>
+      </Link>
       <nav>
         <ul className={styles.nav_links}>
           <li>
