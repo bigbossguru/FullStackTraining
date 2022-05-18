@@ -8,6 +8,7 @@ button {
 }
 
 header {
+  background-color: #24252a;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -37,6 +38,8 @@ header {
 }
 
 button {
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 9px 25px;
   background-color: rgba(0, 136, 169, 1);
   border: none;
