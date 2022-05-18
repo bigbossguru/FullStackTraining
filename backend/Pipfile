@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "*"
+django-cors-headers = "*"
+django-environ = "*"
+gunicorn = "*"
+celery = "*"
+redis = "*"
+drf-yasg = "*"
+fastapi = "*"
+uvicorn = "*"
+alembic = "*"
+python-dotenv = "*"
+Django = "*"
+SQLAlchemy = "*"
+djangorestframework-simplejwt = "*"
+
+[dev-packages]
+pylint = "*"
+black = "*"
+
+[requires]
+python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
